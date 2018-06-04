@@ -1,3 +1,14 @@
+<?php
+if(!include('connect.php')){
+
+    echo "Error on include";
+}
+
+$selectAll = "SELECT * FROM `content` ORDER BY `id` DESC LIMIT 5 ";
+$result = $connect->query($selectAll);
+
+
+?>
 <!DOCTYPE HTML>
 <!--
 	Stellar by HTML5 UP
@@ -40,10 +51,33 @@
 					<div id="main">
 
 						<!-- Introduction -->
-							<section id="intro" class="main">
+
+                        <?php
+                        while($row = $result->fetch_array()){
+                            printf(" <section id=\"intro\" class=\"main\">
+								<div class=\"spotlight\">
+									<div class=\"content\">
+										<header class=\"major\">
+                                            <h1><?php echo $row[0]  ?></h1>
+											<h2>". $row['title'] ."</h2>
+										</header>
+										".$row['iContent']."
+										<ul class=\"actions\">
+											<li><a href=\"pages/project.php/?title=".$row['title']."\" class=\"button\">Learn More</a></li>
+										</ul>
+									</div>-
+									<!--<span class=\"image\"><img src=\"images/pic01.jpg\" alt=\"\" /></span>-->
+								</div>
+							</section>
+							");
+                        }
+
+                        ?>
+							<!-- <section id="intro" class="main">
 								<div class="spotlight">
 									<div class="content">
 										<header class="major">
+                                            <h1></h1>
 											<h2>How to install lamp on ubuntu.</h2>
 										</header>
 										<p>1) The first step is to make sure that your computer is up today by running this command<span class="code">sudo apt-get update.</span></p>
@@ -51,10 +85,11 @@
 										<ul class="actions">
 											<li><a href="pages/lamp-on-ubuntu.html" class="button">Learn More</a></li>
 										</ul>
-									</div>
+									</div>-->
 									<!--<span class="image"><img src="images/pic01.jpg" alt="" /></span>-->
-								</div>
-							</section>
+								<!--</div>
+							</section>-->
+
 
 						<!-- First Section -->
 						<!--
@@ -140,38 +175,13 @@
 
 					</div>
 						-->
+
+
+
 				<!-- Footer -->
 						<hr />
-					<footer id="footer">
-						<section>
-							<h2>Website</h2>
-							<p>I created this website with the purpose of posting most of my projects or tutorials.</p>
-							<!--<ul class="actions">
-								<li><a href="generic.html" class="button">Learn More</a></li>
-							</ul>-->
-						</section>
-						<section>
-							<h2>Information</h2>
-							<dl class="alt">
-								<!--<dt>Address</dt>
-								<dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-								<dt>Phone</dt>
-								<dd>(000) 000-0000 x 0000</dd>
-								<dt>Email</dt>
-								<dd><a href="#">information@untitled.tld</a></dd>-->
-							</dl>
-							<ul class="icons">
-                                <li><a href="https://github.com/maximo5741/" class="icon fa-github alt"><span class="label">GitHub</span></a></li>
-								<!--<li><a href="#" class="icon fa-twitter alt"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon fa-facebook alt"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon fa-instagram alt"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon fa-github alt"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon fa-dribbble alt"><span class="label">Dribbble</span></a></li>
-							    -->
-							</ul>
-						</section>
-						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-					</footer>
+					<!--Footer-->
+                        <?php include("footer.php")?>
 
 			</div>
 
