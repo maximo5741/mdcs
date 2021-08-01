@@ -7,7 +7,7 @@
  */
 
 
-$connect = new mysqli('mdcs.c7trgem2rcxp.us-east-1.rds.amazonaws.com','maximo5741','master12345','mdcs');
+$connect = new mysqli('','','','mdcs');
 if($connect->connect_errno){
     echo "Field to connect to MySQL database:". $connect->connect_errno ."" . $connect->error ;
 }
